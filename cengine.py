@@ -95,7 +95,7 @@ def computesessionfeatures(sessionpackt):
     features["srv_rerror_rate"] = features["rerror_rate"]
     features["same_srv_rate"] = len(set(p[TCP].dport for p in sessionpackt)) / srv_count if srv_count > 0 else 0
     features["diff_srv_rate"] = len(diffsrvcount) / srv_count if srv_count > 0 else 0
-    features["srv_diff_host_rate"] = 0  # Placeholder (you need to calculate it correctly)
+    features["srv_diff_host_rate"] = len(set(p[IP].src for p in sessionpackt)) / srv_count if srv_count > 0 else 0
 
     features["dst_host_count"] = len(diffsrvcount)
     features["dst_host_srv_count"] = len(set((p[IP].dst, p[TCP].dport) for p in sessionpackt))
@@ -112,7 +112,10 @@ def computesessionfeatures(sessionpackt):
     features["dst_host_same_srv_rate"] = dst_host_same_srv_rate
     features["dst_host_diff_srv_rate"] = dst_host_diff_srv_rate
     features["dst_host_same_src_port_rate"] = dst_host_same_src_port_rate
-    features["dst_host_srv_diff_host_rate"] = 0  # Placeholder (needs proper calculation)
+    
+
+    features["dst_host_srv_diff_host_rate"] = len(set(p[IP].src for p in sessionpackt)) / srv_count if srv_count > 0 else 0
+
     features["dst_host_serror_rate"] = dst_host_serror_rate
     features["dst_host_srv_serror_rate"] = dst_host_srv_serror_rate
     features["dst_host_rerror_rate"] = dst_host_rerror_rate
@@ -150,12 +153,12 @@ def sendtoserver(features):
         )
         if response.status_code == 200:
             result = response.json()
+            print("Packet received. Prediction from Cloud server: ",result)
             if result.get("prediction") == "anomaly":
                 requests.post("http://localhost:5550/error")
     except Exception as e:
         print(f"Communication error: {e}")
 
-# Initialize
 register_with_tra()
 print("Starting packet capture...")
 sniff(prn=packetcallback, store=0, filter="tcp and port 5550")

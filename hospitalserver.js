@@ -38,7 +38,7 @@ let data = {};
 let intrusion = false;  
 
 // 🔹 Store Sensor Data Securely
-app.post('/data', authenticate, (req, res) => {
+app.post('/data', (req, res) => {
     const { id, bpm } = req.body;
 
     if (!id || bpm === undefined) {
@@ -110,7 +110,7 @@ app.get('/', (req, res) => {
                     }
                 });
 
-            fetch('/data', { headers: { 'Authorization': '${AUTH_KEY}' } })
+            fetch('/data')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -143,7 +143,7 @@ app.get('/', (req, res) => {
                 if (sensorId === 'none') {
                     sensorGraph.style.display = 'none';
                 } else {
-                    fetch(\`/data/\${sensorId}\`, { headers: { 'Authorization': '${AUTH_KEY}' } })
+                    fetch(\`/data/\${sensorId}\`)
                         .then(response => response.json())
                         .then(sensorData => {
                             const labels = sensorData.map(item => item.timestamp);

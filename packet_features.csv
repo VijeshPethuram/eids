@@ -1,0 +1,6 @@
+duration,protocol_type,service,flag,src_bytes,dst_bytes,land,wrong_fragment,urgent,hot,srv_count,serror_rate,srv_serror_rate,rerror_rate,srv_rerror_rate,same_srv_rate,diff_srv_rate,srv_diff_host_rate,dst_host_count,dst_host_srv_count,dst_host_same_srv_rate,dst_host_diff_srv_rate,dst_host_same_src_port_rate,dst_host_srv_diff_host_rate,dst_host_serror_rate,dst_host_srv_serror_rate,dst_host_rerror_rate,dst_host_srv_rerror_rate
+3.027545928955078,tcp,other,S,136,136,0,0,0,1,2,0.0,0.0,0.0,0.0,0.5,0.5,0.5,1,1,1.0,0.5,1.0,0.5,0.0,0.0,0.0,0.0
+6.0404438972473145,tcp,other,S,204,204,0,0,0,1,3,0.0,0.0,0.0,0.0,0.3333333333333333,0.3333333333333333,0.3333333333333333,1,1,1.0,0.3333333333333333,1.0,0.3333333333333333,0.0,0.0,0.0,0.0
+9.05744981765747,tcp,other,S,272,272,0,0,0,1,4,0.0,0.0,0.0,0.0,0.25,0.25,0.25,1,1,1.0,0.25,1.0,0.25,0.0,0.0,0.0,0.0
+12.088846921920776,tcp,other,S,340,340,0,0,0,1,5,0.0,0.0,0.0,0.0,0.2,0.2,0.2,1,1,1.0,0.2,1.0,0.2,0.0,0.0,0.0,0.0
+15.110774993896484,tcp,other,S,394,394,0,0,0,1,6,0.0,0.0,0.0,0.0,0.16666666666666666,0.16666666666666666,0.16666666666666666,1,1,1.0,0.16666666666666666,1.0,0.16666666666666666,0.0,0.0,0.0,0.0
