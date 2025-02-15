@@ -37,7 +37,7 @@ class CloudSrvr:
         self.ensem = None
         self.standscalr = StandardScaler()
         self.onehotenc = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
-        self.data = pd.read_csv("KDD.csv").iloc[:10000]
+        self.data = pd.read_csv("KDD.csv").iloc[:7000]
         self.tempbuffr = pd.DataFrame(columns=self.data.columns)
         self.trainall()
     

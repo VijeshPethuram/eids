@@ -58,6 +58,7 @@ async function forwardRequest(req, res, endpoint) {
         }
 
         // Forward the request to the Hospital Server
+        print("Forwarding a request to the Original hospital server.")
         const response = await axios.post(`${HOSPITAL_SERVER_URL}${endpoint}`, req.body, {
             headers: {
                 "Entity-ID": ENTITY_ID,

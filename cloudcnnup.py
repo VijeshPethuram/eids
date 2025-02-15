@@ -95,7 +95,7 @@ class CloudSrvr:
 
         for nam, mdl in self.machinemodels.items():
             if nam == "cnn":
-                mdl.fit(Xtraincnn, ytrain, epochs=1, batch_size=32, verbose=1)
+                mdl.fit(Xtraincnn, ytrain, epochs=10, batch_size=32, verbose=1)
                 ypred = (mdl.predict(Xtestcnn) > 0.5).astype("int32")
             else:
                 mdl.fit(Xtrainpre, ytrain)
@@ -126,7 +126,7 @@ class CloudSrvr:
         cnnpredict = (self.machinemodels["cnn"].predict(X_cnn) > 0.5).astype("int32")[0][0]
         ensemblepredict = self.ensem.predict(Xpreprocessed)
         
-        final_prediction = "anomaly" if ensemblepredict[0] == "anomaly"  else "normal"
+        final_prediction = "anomaly" if ensemblepredict[0] == "anomaly" or cnnpredict==1  else "normal"
         
         if final_prediction == "anomaly":
             self.tempbuffr = pd.concat([self.tempbuffr, packet_df], ignore_index=True)
